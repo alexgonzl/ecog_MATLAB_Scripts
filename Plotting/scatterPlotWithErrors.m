@@ -1,4 +1,4 @@
-function ha = scatterPlotWithErrors(M1,M2,varargin)
+function ha = scatterPlotWithErrors(M1,M2,markerSize,varargin)
 % ha = scatterPlotWithErrors(M1,M2,c,lim,refs)
 %
 % M1, M2 -> are the data matrices are N x 2 or N x 3;
@@ -85,6 +85,6 @@ end
 for ii = 1:N
     plot([1 1].*x(ii),[-yseL(ii) yseU(ii)] + y(ii),'color',0.1*ones(3,1),'linewidth',1)
     plot([-xseL(ii) xseU(ii)] + x(ii),[1 1].*y(ii),'color',0.1*ones(3,1),'linewidth',1)   
-    scatter(x(ii),y(ii),100, 'filled','cdata',c(ii,:))
+    scatter(x(ii),y(ii),markerSize, 'filled','cdata',c(ii,:))
 end
 set(gca,'LineWidth',2,'FontSize',16)

@@ -515,7 +515,7 @@ rightsNoR3 = ismember(data1.subjChans,[6 7])';
 chIdx{7}   = data1.ROIid==1 & rightsNoR3;
 chIdx{8}   = data1.ROIid==2 & rightsNoR3;
 chIdx{9}   = data1.ROIid==3 & rightsNoR3;
-if 0
+if 1
     f(7) = figure(7); clf;
     figW = 900;
     figH = 600;
@@ -593,7 +593,7 @@ if 0
             if (cnt==3) % left lower plot
 
                 set(gca,'XtickLabel',{'','stim','','0.4','','0.8',''})
-                ylabel(' SPL HGP(dB) ','fontsize',20,'fontWeight','normal')
+                ylabel(' AG HGP(dB) ','fontsize',20,'fontWeight','normal')
             end
             
             if (cnt==4) % lower right plot
@@ -605,7 +605,7 @@ if 0
         end
     end
     axes('position',[0 0 1 0.1])
-    text(0.48,0.3,' Time (s) ','fontsize',20)
+    text(0.48,0.5,' Time (s) ','fontsize',20)
     axis off
 
     cPath = pwd;

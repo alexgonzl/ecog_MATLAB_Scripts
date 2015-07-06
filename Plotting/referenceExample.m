@@ -9,8 +9,8 @@ figW = 1000;
 figH = 400;
 set(gcf,'position',[-1000 200,figW,figH],'PaperPositionMode','auto','color','w')
 
-a1=axes('position',[0.1 0.1 0.38 0.8]);
-a2=axes('position',[0.55 0.1 0.38 0.8]);
+a1=axes('position',[0.1 0.14 0.38 0.8]);
+a2=axes('position',[0.55 0.14 0.38 0.8]);
 
 %
 [v,i]=sort(data.chanTotalTstat);
@@ -57,7 +57,11 @@ title(' Chan not selected ' )
 
 xx=legend([h.h1.mainLine,h.h2.mainLine],'hits','CRs');
 set(xx,'box','off','location','best')
-                
+
+axes('position',[0 0 1 0.1])
+text(0.48,0.5,' Time (s) ','fontsize',16)
+axis off
+
 inkscapePath='/Applications/Inkscape.app/Contents/Resources/bin/inkscape';
 SupPlotPath = ['~/Google ','Drive/Research/ECoG ','Manuscript/ECoG ', 'Manuscript Figures/supplement/'];
 

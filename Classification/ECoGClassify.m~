@@ -89,17 +89,14 @@ switch toolbox
             end
             
             % Final Model for fold
-            iterCounter = 1;
+            incompleteFlag = 1;
             terCrit2 = terCrit;
-            while iterCounter<10                
+            while incompleteFlag
                 model = train(Y(trainIdx), X(trainIdx,:), [trainOpts ' -c ' num2str(optParam(fold)) ' -e ' num2str(terCrit2)]);
                 weights(fold,:) = model.w;
                 if (sum(model.w)~=0)
-                    break
-                else
-                    terCrit2 =terCrit2/10;
+                    incompleteFlag=0;
                 end
-                iterCounter=iterCounter+1;
             end
             
             % Prediction/Test for fold

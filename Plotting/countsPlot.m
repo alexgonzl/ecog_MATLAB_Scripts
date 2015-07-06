@@ -45,9 +45,9 @@ axis off
 
 ha = tight_subplot(1,2);
 lMargin = 0.1;
-bMargin = 0.1;
+bMargin = 0.15;
 
-subAxH      = 0.85;
+subAxH      = 0.8;
 subAxW      = 0.4;
 betweenColSpace = 0.01;
 
@@ -106,6 +106,11 @@ set(gca,'yAxisLocation','right')
 set(gca,'yticklabel',{'0.0', '0.25', '0.5' ,'0.75' , '1.0'})
 
 set(gca,'fontsize',14,'fontWeight','normal')
+
+
+axes('position',[0 0 1 0.1])
+text(0.48,0.5,' Time (s) ','fontsize',16)
+axis off
 
 inkscapePath='/Applications/Inkscape.app/Contents/Resources/bin/inkscape';
 SupPlotPath = ['~/Google ','Drive/Research/ECoG ','Manuscript/ECoG ', 'Manuscript Figures/supplement/'];

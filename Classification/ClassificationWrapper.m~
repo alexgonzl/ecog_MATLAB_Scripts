@@ -32,16 +32,16 @@ switch opts.dataType
         allData = cell(nSubjs,1);
         for band = 1:nBands
             
-            if strcmp(opts.bands{band},'erp')
+            if strcmp(opts.bands{band},'erp')                
                 fileName = ['allERPsGroup' opts.lockType 'LocksubAmp' ...
-                    opts.reference num2str(opts.nRefChans)];
+                        opts.reference num2str(opts.nRefChans)];
                 load(['~/Documents/ECOG/Results/ERP_Data/group/' fileName])
             else
                 fileName = ['allERSPs' opts.bands{band} 'Group' opts.lockType  ...
                     'LocksublogPower' opts.reference num2str(opts.nRefChans)];
                 load([dataPath fileName])
             end
-            
+
             for s = 1:nSubjs
                 allData{s}(:,:,:,band) = data.([opts.timeType 'ERP']){s};
             end
@@ -84,9 +84,9 @@ switch opts.channelGroupingType
             nChansSubjIter(s) = numel(unique(data.ROIid(data.subjChans==s)));
         end
     case 'IPS-SPL'
-        nChansSubjIter = ones(nSubjs,1);
+        nChansSubjIter = ones(nSubjs,1);  
     case 'all'
-        nChansSubjIter = ones(nSubjs,1);
+        nChansSubjIter = ones(nSubjs,1);  
     otherwise
         error('not supported option for channel features')
 end
@@ -139,7 +139,7 @@ for s = 1:nSubjs
     %S.BootIdxMat{s} = balancedBootStrapIdx(nBoots,nSubsetTrials,nFolds,find(Y==1),find(Y==0));
     [S.testIdx{s}, S.testFoldIdx{s}, S.trainFoldIdx{s}]  = balancedBootStrapXVal(nBoots, ...
         nSubsetTrials,nFolds,find(Y==1),find(Y==0));
-    
+
     for chanIter = 1:nChansSubjIter(s)
         
         fprintf( 'Classifying Subject %d Channel %d \n',s,chanIter)
@@ -197,18 +197,13 @@ for s = 1:nSubjs
                             mean_model(bs,:) = mean(S.out{s,chanIter,winIter,bs}.weights);
                         end
                         
-                        if  sum(mean_model(bs,:))==0
-                            
-                        end
+                        if  sum(mean_model(bs,:))~=
                         
                         S.perfFA(s,chanIter,winIter,bs)   = sum((Y2==1) & ([X2 ones(nFA+nMI,1)]*mean_model(bs,:)'>=0) )/nFA;
                         S.perfMISS(s,chanIter,winIter,bs) = sum((Y2==0) & ([X2 ones(nFA+nMI,1)]*mean_model(bs,:)'< 0) )/nMI;
                     end
                 end
                 if strcmp(S.classificationParams.toolbox,'liblinear') || strcmp(S.classificationParams.toolbox,'glmnet')
-                    if  sum(mean_model(bs,:))==0
-                        keyboard;
-                    end
                     S.model{s,chanIter,winIter} = median(mean_model(:,1:nFeatures));
                 end
             else

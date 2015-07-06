@@ -109,6 +109,7 @@ for s =1:nSubjs
             data.mBAC(ChCount,bi)    = m;
             data.pBAC(ChCount,bi)    = p;
             data.qBAC(ChCount,bi,:)  = quantile(x,[0.025,0.5 0.975]);
+            data.q10BAC(ChCount,bi,:)  = quantile(x,[0.1]);
             data.cBAC(ChCount,bi)    = mean(x>0.5);
             data.meBAC(ChCount,bi)   = me;
             data.sdBAC(ChCount,bi)   = sd;

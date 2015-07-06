@@ -15,7 +15,7 @@ addpath lib/
 %dateStr = '17-Jun-2013';
 subjects = {'16b'};
 %subjects = {'17b','19','29'};
-reference = 'origCAR'; nRefChans = 0;
+%reference = 'origCAR'; nRefChans = 0;
 reference = 'nonLPCleasL1TvalCh'; nRefChans = 10;
 dataPath = '../Results/';
 for s = subjects
@@ -657,7 +657,7 @@ printStats(data,opts)
 savePath = '../Results/Rdata/';
 blockStr = {'bySubj','byBlock'}; blockStr = blockStr{opts.byBlockFlag+1};
 out = exportLPCData2R(data,opts);
-csvwrite([savePath opts.bin timeStr fileName blockStr '.csv'],single(out));
+%csvwrite([savePath opts.bin timeStr fileName blockStr '.csv'],single(out));
 
 %% %%%%%%%%%
 
@@ -668,9 +668,9 @@ addpath Classification/
 addpath lib/
 
 LT  = {'stim','RT'};
-GT = {'ROI','channel','IPS-SPL'};
-for gt = 1:3
-    for lt = 1:2;
+GT = {'channel'};%{'ROI','channel','IPS-SPL'};
+for gt = 1:numel(GT)
+    for lt = 1:numel(LT);
         opts                = [];
         opts.lockType       = LT{lt};
         opts.reference      = 'nonLPCleasL1TvalCh'; opts.nRefChans = 10;

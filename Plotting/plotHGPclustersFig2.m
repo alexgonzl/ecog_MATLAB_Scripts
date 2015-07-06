@@ -240,22 +240,22 @@ if 0
     print(gcf,'-dtiff',['-r' num2str(opts.resolution)],[opts.plotPath filename])
     
 end
-    if 1
-        figure(5); clf; 
-        set(gcf,'position',[-800 200,500,500],'PaperPositionMode','auto','color','w')        
-        ctmr_gauss_plot(gca,cortex{1},[0 0 0],0,'l');
-        el_add(chanLocs(chanNums,:),[0 0 0],15);
-        
-         el_add(chanLocs(CLChans{1},:),[0 0 0],30)
-        el_add(chanLocs(CLChans{1},:),ClCol{1},25);
-        
-        el_add(chanLocs(CLChans{2},:),[0 0 0],30)
-        el_add(chanLocs(CLChans{2},:),ClCol{2},25);
-            loc_view(view{1}(1),view{1}(2))
-        set(gca, 'CameraViewAngle',7)
-        
-        print(gcf,'-dtiff',['-r' num2str(opts.resolution)],[opts.plotPath 'clusterUnion'])
-    end
+if 0
+    figure(5); clf;
+    set(gcf,'position',[-800 200,500,500],'PaperPositionMode','auto','color','w')
+    ctmr_gauss_plot(gca,cortex{1},[0 0 0],0,'l');
+    el_add(chanLocs(chanNums,:),[0 0 0],15);
+    
+    el_add(chanLocs(CLChans{1},:),[0 0 0],30)
+    el_add(chanLocs(CLChans{1},:),ClCol{1},25);
+    
+    el_add(chanLocs(CLChans{2},:),[0 0 0],30)
+    el_add(chanLocs(CLChans{2},:),ClCol{2},25);
+    loc_view(view{1}(1),view{1}(2))
+    set(gca, 'CameraViewAngle',7)
+    
+    print(gcf,'-dtiff',['-r' num2str(opts.resolution)],[opts.plotPath 'clusterUnion'])
+end
 %% time courses
 if 0
     f = figure(4); clf;
@@ -359,7 +359,7 @@ if 0
     
 end
 %% stim cluster TC (supplement)
-if 0
+if 1
     f(6) = figure(6); clf;
     figW = 900;
     figH = 600;
@@ -653,37 +653,37 @@ end
 %function renderClusters(sCDB,sChanIDs,opts)
 
 %%
-        
-        % renderings
-        cnt = cnt + 1;
-        axes(ha(cnt))
-        
-        [sCDB,sIdx] = sort(CDB{row});
-        nCL1 = sum(sCDB>=0);
-        nCL2 = sum(sCDB<0);
-        
-        cm      = [ linspace(TwoClCol(1,1),TwoClCol(2,1),nCL2)' linspace(TwoClCol(1,2),TwoClCol(2,2),nCL2)' linspace(TwoClCol(1,3),TwoClCol(2,3),nCL2)' ;
-            linspace(TwoClCol(2,1),TwoClCol(3,1),nCL1)' linspace(TwoClCol(2,2),TwoClCol(3,2),nCL1)' linspace(TwoClCol(2,3),TwoClCol(3,3),nCL1)' ];
-        
-        sChanIDs  = chanNums(sIdx);
-        
-        ctmr_gauss_plot(gca,cortex{1},[0 0 0],0,'l');
-        el_add(chanLocs(chanNums,:),[0 0 0],15);
-        % scaled renderings
-        %     for i = 1:numel(chanNums)
-        %         el_add(chanLocs(sChanIDs(i),:),cm(i,:),25);
-        %     end
-        
-        % thresholded renderings
-        for i = 1:numel(chanNums)
-            if sCDB(i) >= thrLines(row)
-                el_add(chanLocs(sChanIDs(i),:),[0 0 0],30)
-                el_add(chanLocs(sChanIDs(i),:),ClCol{1},25);
-            elseif sCDB(i) <= -thrLines(row)
-                el_add(chanLocs(sChanIDs(i),:),[0 0 0],30)
-                el_add(chanLocs(sChanIDs(i),:),ClCol{2},25);
-            end
-        end
-        loc_view(view{1}(1),view{1}(2))
-        set(gca, 'CameraViewAngle',7)
+
+% renderings
+cnt = cnt + 1;
+axes(ha(cnt))
+
+[sCDB,sIdx] = sort(CDB{row});
+nCL1 = sum(sCDB>=0);
+nCL2 = sum(sCDB<0);
+
+cm      = [ linspace(TwoClCol(1,1),TwoClCol(2,1),nCL2)' linspace(TwoClCol(1,2),TwoClCol(2,2),nCL2)' linspace(TwoClCol(1,3),TwoClCol(2,3),nCL2)' ;
+    linspace(TwoClCol(2,1),TwoClCol(3,1),nCL1)' linspace(TwoClCol(2,2),TwoClCol(3,2),nCL1)' linspace(TwoClCol(2,3),TwoClCol(3,3),nCL1)' ];
+
+sChanIDs  = chanNums(sIdx);
+
+ctmr_gauss_plot(gca,cortex{1},[0 0 0],0,'l');
+el_add(chanLocs(chanNums,:),[0 0 0],15);
+% scaled renderings
+%     for i = 1:numel(chanNums)
+%         el_add(chanLocs(sChanIDs(i),:),cm(i,:),25);
+%     end
+
+% thresholded renderings
+for i = 1:numel(chanNums)
+    if sCDB(i) >= thrLines(row)
+        el_add(chanLocs(sChanIDs(i),:),[0 0 0],30)
+        el_add(chanLocs(sChanIDs(i),:),ClCol{1},25);
+    elseif sCDB(i) <= -thrLines(row)
+        el_add(chanLocs(sChanIDs(i),:),[0 0 0],30)
+        el_add(chanLocs(sChanIDs(i),:),ClCol{2},25);
+    end
+end
+loc_view(view{1}(1),view{1}(2))
+set(gca, 'CameraViewAngle',7)
 end

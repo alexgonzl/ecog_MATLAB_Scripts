@@ -13,7 +13,7 @@ opts.type           = 'power';
 opts.band           = 'hgam';
 opts.smoother       = 'loess';
 opts.smootherSpan   = 0.15;
-opts.yLimits        = [-0.6 2];
+opts.yLimits        = [-1.5 2];
 opts.timeLims       = [0 1; -1 0.2]; % statistcs evaluation; first row for stim
 opts.aRatio         = [500 300];
 opts.renderType     = 'SmoothCh';%{'SmoothCh','UnSmoothCh', 'SigChans','SignChans'};
@@ -81,7 +81,7 @@ opts                = [];
 opts.smoother       = 'loess';
 opts.smootherSpan   = 0.15;
 opts.resolution     = 600;
-opts.Pthr           = 0.01;
+opts.Pthr           = 0.005;
 opts.timeLims       = [0 1; -1 0.2]; % statistcs evaluation; first row for stim
 opts.plotPath       = ['~/Google ','Drive/Research/ECoG ','Manuscript/ECoG ',...
     'Manuscript Figures/Fig2/'];
@@ -166,8 +166,8 @@ opts.dataType2       = 'power'; opts.bands2        = {'hgam'};
 opts.subjects       = [1:5]; % left subjects
 opts.ROIs           = [1 2]; % roi 1 and 2, IPS and SPL
 opts.ROIids         = true;  % plot roi colors
-opts.ylims = [0.45 0.9];
-opts.xlims = [0.45 0.7];
+opts.ylims = [0.45 0.7];
+opts.xlims = [0.45 0.9];
 
 opts.rendLimits     = [-0.15 0.15];
 opts.resolution     = 400;
@@ -225,6 +225,7 @@ data6 = S; % RTLock by IPS-SPL
 opts.savePath = '/Users/alexg8/Google Drive/Research/ECoG Manuscript/ECoG Manuscript Figures/Fig3/';
 close all
 %plotFigure3_v2(data1,data2,data3,data4,data5,data6,opts)
+plotFigure3_v4(data1,data2,data3,data4,data5,data6,opts)
 %% decoding statistics in the paper:
 IPSch = data1.ROIid==1 & data1.hemChanId==1;
 SPLch = data1.ROIid==2 & data1.hemChanId==1;
