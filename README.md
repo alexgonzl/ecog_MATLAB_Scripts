@@ -2,6 +2,8 @@
 
 MATLAB code for Gonzalez et al. (2015). Electrocorticography reveals the temporal dynamics of posterior parietal cortical activity during recognition memory decisions. *PNAS*. https://doi.org/10.1073/pnas.1510749112
 
+Official published code: [WagnerLab/ECoG_PPC_RecogMemory](https://github.com/WagnerLab/ECoG_PPC_RecogMemory). This repo continues it with later classification and figure 3 revisions.
+
 - `manuscriptPlottingWrapper.m`: entry point for the manuscript figures
 - `processingWrapper.m`, `PreProcessing/`: ECoG preprocessing
 - `Analysis/`: ERP, ERSP, ITC, spectral and clustering analyses
